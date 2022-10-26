@@ -1,0 +1,48 @@
+{
+  "name": "slavcodev/behat-demo",
+  "description": "Behat demo feature with context implementation",
+  "config": {
+    "discard-changes": true,
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "authors": [
+    {"email": "slavcopost@gmail.com", "name": "Veaceslav Medvedev"}
+  ],
+  "minimum-stability": "stable",
+  "repositories": [],
+  "require": {
+    "php": "^8.1",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "behat/behat": "^3.11",
+    "friendsofphp/php-cs-fixer": "^3.12",
+    "vimeo/psalm": "^4.29"
+  },
+  "autoload": {
+    "psr-4": {
+      "Slavcodev\\BehatDemo\\": ["src"]
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "1.x-dev"
+    }
+  },
+  "scripts": {
+    "test-features": "behat",
+    "test-sca": "psalm --find-dead-code=always --show-info=false --long-progress",
+    "fix-cs": "php-cs-fixer fix -v --diff --ansi",
+    "test-cs": "@fix-cs --dry-run",
+    "lint": [
+      "@test-cs",
+      "@test-sca"
+    ],
+    "test": [
+      "@lint",
+      "@test-features"
+    ]
+  }
+}

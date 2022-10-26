@@ -1,0 +1,38 @@
+name: "behat"
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['8.1']
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, intl, curl, json
+
+      - id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - uses: actions/cache@v3.0.11
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - run: composer install --no-interaction
+
+      - run: composer run test-features
