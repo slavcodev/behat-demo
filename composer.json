@@ -18,7 +18,7 @@
   },
   "require-dev": {
     "behat/behat": "^3.11",
-    "friendsofphp/php-cs-fixer": "^3.12",
+    "friendsofphp/php-cs-fixer": "^3.13",
     "vimeo/psalm": "^4.29"
   },
   "autoload": {
