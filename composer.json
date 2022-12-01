@@ -19,7 +19,7 @@
   "require-dev": {
     "behat/behat": "^3.12",
     "friendsofphp/php-cs-fixer": "^3.13",
-    "vimeo/psalm": "^4.30"
+    "vimeo/psalm": "^5.0"
   },
   "replace": {
     "symfony/polyfill-php80": "*",
