@@ -22,13 +22,11 @@ jobs:
           php-version: ${{ matrix.php-version }}
           extensions: mbstring, intl, curl, json
 
-      - id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - run: echo "COMPOSER_CACHE_DIR=$(composer config cache-files-dir)" >> $GITHUB_ENV
 
       - uses: actions/cache@v3
         with:
-          path: ${{ steps.composer-cache.outputs.dir }}
+          path: ${{ env.COMPOSER_CACHE_DIR }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
