@@ -16,7 +16,7 @@
     "ext-mbstring": "*"
   },
   "require-dev": {
-    "behat/behat": "^3.13",
+    "behat/behat": "^3.14",
     "friendsofphp/php-cs-fixer": "^3.46",
     "vimeo/psalm": "^5.19"
   },
