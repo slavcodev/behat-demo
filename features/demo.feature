@@ -1,6 +1,12 @@
 @demo
-Feature: Behat tests
-  Scenario: Run test
-    Given I am "John Doe"
-    When people meet me
-    Then they say "Hello, John!"
+Feature: Behat demo
+
+  Scenario: My mood on sunny days
+    Given a sunny day
+    When I go out for a walk
+    Then I'm happy
+
+  Scenario: My mood on rainy days
+    Given a rainy day
+    When I go out for a walk
+    Then I'm sleepy

@@ -7,41 +7,43 @@ namespace Slavcodev\BehatDemo;
 use Behat\Behat\Context\Context;
 use Exception;
 
-use function array_pad;
-use function explode;
 use function sprintf;
 
 final class DemoContext implements Context
 {
-    private string $firstName = '';
+    private string $weather = '';
 
-    private string $lastName = '';
-
-    private string $message = '';
+    private string $mood = '';
 
     /**
-     * @Given /^I am "([^"]*)"$/
+     * @Given /^a ([^"]*) day$/
      */
-    public function setName(string $name): void
+    public function setWeather(string $kind): void
     {
-        [$this->firstName, $this->lastName] = array_pad(explode(' ', $name), 2, '');
+        $this->weather = $kind;
     }
 
     /**
-     * @When /^people meet me$/
+     * @When /^I go out for a walk$/
      */
-    public function sayHello(): void
+    public function changeMood(): void
     {
-        $this->message = "Hello, {$this->firstName}!";
+        $this->mood = match ($this->weather) {
+            'sunny' => 'happy',
+            'rainy' => 'sleepy',
+            default => 'fine',
+        };
     }
 
     /**
-     * @Then /^they say "([^"]*)"$/
+     * @Then /^I'm ([^"]*)$/
+     *
+     * @throws Exception
      */
-    public function checkMessage(string $message): void
+    public function checkMessage(string $mood): void
     {
-        if ($this->message !== $message) {
-            throw new Exception(sprintf('"%s" does not match expected "%s"', $this->message, $message));
+        if ($this->mood !== $mood) {
+            throw new Exception(sprintf('"%s" does not match expected "%s"', $this->mood, $mood));
         }
     }
 }
