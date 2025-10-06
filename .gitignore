@@ -9,3 +9,4 @@
 
 # Ignore vendor files
 /vendor/
+composer.lock
