@@ -11,10 +11,10 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ['8.1']
+        php-version: ['8.4']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: shivammathur/setup-php@master
         with:
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ${{ env.COMPOSER_CACHE_DIR }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: |
             ${{ runner.os }}-composer-
 
