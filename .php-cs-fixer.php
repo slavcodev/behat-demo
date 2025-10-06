@@ -10,9 +10,9 @@ use PhpCsFixer\Finder;
 $rules = [
     '@PhpCsFixer' => true,
     '@PhpCsFixer:risky' => true,
-    '@PHP74Migration' => true,
-    '@PHP74Migration:risky' => true,
-    '@PHPUnit84Migration:risky' => true,
+    '@PHP7x4Migration' => true,
+    '@PHP7x4Migration:risky' => true,
+    '@PHPUnit8x4Migration:risky' => true,
     'concat_space' => [
         'spacing' => 'one',
     ],
